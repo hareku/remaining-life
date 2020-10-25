@@ -48,4 +48,5 @@ jobs:
       - name: Deployment
         run: |
           yarn generate
+          git fetch origin gh-pages
           yarn deploy
