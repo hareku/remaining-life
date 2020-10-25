@@ -1,26 +1,26 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">remaining-life</h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
+  <div class="pt-8 max-w-screen-md mx-auto">
+    <h1 class="text-5xl text-center">Your Remaining Life</h1>
+
+    <div class="mt-6 w-24 max-w-full mx-auto">
+      <label
+        class="text-center block text-gray-700 text-sm font-bold mb-2"
+        for="age"
+        >Your age</label
+      >
+      <input
+        id="age"
+        v-model="age"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        placeholder="30"
+        type="number"
+      />
+    </div>
+
+    <div class="text-center mt-6">
+      <p>Years: {{ remainingYears }} / {{ totalYears }}</p>
+      <p>Months: {{ remainingMonths }} / {{ totalMonths }}</p>
+      <p>Days: {{ remainingDays }} / {{ totalDays }}</p>
     </div>
   </div>
 </template>
@@ -28,43 +28,38 @@
 <script lang="ts">
 import Vue from 'vue'
 
-export default Vue.extend({})
+export default Vue.extend({
+  data() {
+    return {
+      age: 30,
+      death: 85,
+    }
+  },
+
+  computed: {
+    remainingYears(): number {
+      return Math.max(0, this.death - this.age)
+    },
+
+    remainingMonths(): number {
+      return this.remainingYears * 12
+    },
+
+    remainingDays(): number {
+      return this.remainingYears * 365
+    },
+
+    totalYears(): number {
+      return this.death
+    },
+
+    totalMonths(): number {
+      return this.totalYears * 12
+    },
+
+    totalDays(): number {
+      return this.totalYears * 365
+    },
+  },
+})
 </script>
-
-<style>
-/* Sample `apply` at-rules with Tailwind CSS
-.container {
-@apply min-h-screen flex justify-center items-center text-center mx-auto;
-}
-*/
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-</style>
