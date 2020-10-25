@@ -37,8 +37,10 @@ export default {
   build: {},
 
   // Router Configuration
-  router: {
-    base:
-      process.env.DEPLOY_ENV === 'GH_PAGES' ? '/hareku/remaining-life/' : '',
-  },
+  router:
+    process.env.DEPLOY_ENV === 'GH_PAGES'
+      ? {
+          base: '/remaining-life/',
+        }
+      : {},
 }
