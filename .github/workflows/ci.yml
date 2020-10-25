@@ -45,8 +45,11 @@ jobs:
       - name: Run linter 👀
         run: yarn lint
 
-      - name: Deployment
+      - name: Deploy
         run: |
+          git config --local user.name "GitHub Actions"
+          git remote set-url origin https://hareku:${GITHUB_TOKEN}@github.com/hareku/remaining-life.git
           yarn generate
-          git fetch origin gh-pages
           yarn deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
