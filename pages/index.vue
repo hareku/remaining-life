@@ -48,7 +48,7 @@
     </div>
 
     <div class="text-center text-lg mt-6">
-      <p>You have {{ remainingDays }} days.</p>
+      <p>Remaining {{ remainingDays }} days.</p>
       <p>You lived {{ totalDays - remainingDays }} days.</p>
     </div>
   </div>
